@@ -1,7 +1,12 @@
 const { test } = require('@playwright/test');
 const PageManager = require('../pageObject/manager/pageManager');
 const {readFileSync} = require("node:fs");
-const testData = JSON.parse(readFileSync(`./pageObject//testData/data.json`, `utf-8`));
+
+
+const zalandoBaseTestData = JSON.parse(readFileSync(`./pageObject//testData/zalandodata.json`, `utf-8`));
+
+// Нада 25 е2е и 3 апи
+// Посмотреть как сщделать индивидуальный хук для 1 теста
 
 class BaseTest {
     static pageManager;
@@ -10,7 +15,7 @@ class BaseTest {
         test.beforeEach(async ({ page }) => {
             console.log('Запуск beforeEach');
             BaseTest.pageManager = new PageManager(page);
-            await BaseTest.pageManager.getLoginPage().navigate(testData.sauceURL);
+            await BaseTest.pageManager.getZalandoMainPage().navigate(zalandoBaseTestData.mainPageLink);
         });
     }
 

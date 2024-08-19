@@ -1,18 +1,15 @@
-const HomePage = require('../pages/homePage');
-const LoginPage = require('../pages/loginPage');
+const ZalandoMain = require("../pages/zalando/zalandoMain");
 
 class PageManager {
     constructor(page) {
         this.page = page;
     }
 
-    getHomePage() {
-        return new HomePage(this.page);
+
+    getZalandoMainPage(){
+        return new ZalandoMain(this.page);
     }
 
-    getLoginPage() {
-        return new LoginPage(this.page);
-    }
 }
 
 module.exports = PageManager;
