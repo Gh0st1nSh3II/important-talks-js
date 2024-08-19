@@ -3,9 +3,10 @@ const BaseTest = require('../../baseTest');
 
 BaseTest.beforeEachTests();
 
-test('Can login in sauceDemo', async ({ page }) => {
+test('Login in Zalando as average user', async ({ page }) => {
     const pageManager = BaseTest.pageManager;
 
     await pageManager.getZalandoMainPage().logAsUserInZalando();
 
+    await expect(pageManager.getZalandoMainPage.isUserInZalando()).toBe(true);
 });

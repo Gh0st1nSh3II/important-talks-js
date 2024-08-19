@@ -1,5 +1,6 @@
 const BasePage = require('../basePage');
 const {readFileSync} = require("node:fs");
+const {expect} = require("@playwright/test");
 
 const zalando = JSON.parse(readFileSync(`./pageObject/testData/zalandodata.json`, `utf-8`));
 
@@ -9,28 +10,30 @@ class ZalandoMain extends BasePage{
     }
 
     Buttons = {
-    myAccountBtnByCss: "#header-user-account-icon button",
-    signInLinkBtnCss: ".Wy3rmK button", //.userAccountContent  .Wy3rmK button тоже можно
-    verifyEmailBtnCss: "[data-testid=\"verify-email-button\"]",
-    signInBtnCss: "[data-testid=\"login-button\"]",
-    signOutExpMenuBtnCss: "[href=\"/logout/\"]"
+    myAccountButtonCss: "#header-user-account-icon button",
+    proceedMailBtnCss: "[data-testid=\"verify-email-button\"]",
+    authorizeCompleteBtnCss: "[data-testid=\"login-button\"]",
+    mySizesBtnXpath: "//*[@href=\"/your-sizes/\"]/parent::span"
     }
 
     Input = {
-        emailInputLabelCss: "#lookup-email",
-        passwordInputLabelCss: "#login-password",
+        emailInputFieldCss: "#lookup-email",
+        passwordInputFieldCss: "#login-password",
     }
 
 
     async logAsUserInZalando(){
-        await this.click(this.Buttons.myAccountBtnByCss);
-        await this.click(this.Buttons.signInBtnCss);
-        await this.click(this.Input.emailInputLabelCss);
-        await this.type(this.Input.emailInputLabelCss, zalando.user.email);
-        await this.click(this.Buttons.verifyEmailBtnCss);
-        await this.click(this.Input.passwordInputLabelCss);
-        await this.type(this.Input.passwordInputLabelCss, zalando.user.password);
-        await this.click(this.Buttons.signInBtnCss);
+        await this.click(this.Buttons.myAccountButtonCss);
+        await this.type(this.Input.emailInputFieldCss, zalando.user.email);
+        await this.click(this.Buttons.proceedMailBtnCss);
+        await this.type(this.Input.passwordInputFieldCss, zalando.user.password);
+        await this.click(this.Buttons.authorizeCompleteBtnCss);
+    }
+
+    async isUserInZalando() {
+        await this.hover(this.Buttons.myAccountButtonCss).then();
+        return this.page.isVisible(this.Buttons.mySizesBtnXpath);
+
     }
 
 }
