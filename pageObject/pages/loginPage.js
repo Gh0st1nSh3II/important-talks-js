@@ -22,6 +22,7 @@ class LoginPage extends BasePage {
         await this.type(this.TextBoxes.username, testData.saucePassword);
         await this.click(this.Buttons.loginBtn);
     }
+
 }
 
 module.exports = LoginPage;
