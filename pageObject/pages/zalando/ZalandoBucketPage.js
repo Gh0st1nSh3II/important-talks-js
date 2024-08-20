@@ -18,12 +18,27 @@ class ZalandoBucketPage extends BasePage{
     Buttons = {
         deleteItemFromCartCss: "[data-id=\"article-remove\"]",
         proceedToPayBtnCss: "[data-id=\"proceed-to-checkout-button\"]",
-        undoDeleteActionBtnCss: ".z-coast-base__undo-action a"
+        undoDeleteActionBtnCss: ".z-coast-base__undo-action a",
+        proceedPostData: "[data-id=\"button-save-address-book\"]"
     }
     Links = {
         myNikeShoesInCartCss: ".z-coast-base__article__details [href*=\"nike-sportswear\"]",
     }
 
+    Icons = {
+        errorIcon: ".z-1-icon_svg"
+    }
+
+    async isErrorIconViaEditPostDataVisible(){
+        await this.isElementPresent(this.Icons.errorIcon)
+    }
+    async clickProceedToPayButton(){
+        await this.click(this.Buttons.proceedToPayBtnCss)
+    }
+
+    async clickProceedDataButton(){
+        await this.click(this.Buttons.proceedPostData)
+    }
     async undoRemoveMyNikeShoesFromcart() {
         await this.waitForSelector(this.Buttons.undoDeleteActionBtnCss).then(() => this.click(this.Buttons.undoDeleteActionBtnCss));
     }

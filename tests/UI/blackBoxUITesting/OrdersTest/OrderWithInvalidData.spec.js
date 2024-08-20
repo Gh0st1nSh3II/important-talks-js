@@ -9,4 +9,10 @@ test('Checking if the orders options work correctly with invalid data', async ({
 
     await pageManager.getZalandoMainPage().clickCartButton();
 
+    await pageManager.getZalandoBucketPage().clickProceedDataButton();
+
+    await pageManager.getZalandoBucketPage().clickProceedDataButton();
+
+    await pageManager.getZalandoBucketPage().isErrorIconViaEditPostDataVisible();
+
 });
