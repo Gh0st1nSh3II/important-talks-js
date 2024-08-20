@@ -9,18 +9,26 @@ class ZalandoBucketPage extends BasePage{
     Labels = {
      mainCartContainerCss: "[data-id=\"cart-fragment-container\"]",
      cartItemCounterCss: "[data-testid=\"shopping-bag-badge\"] span",
-     cartItemContainerDunkLowBPCss: "#article-e1e6aa61-5f1f-11ef-aacd-e751ed0fad07",
+     cartItemContainerDunkLowBPCss: "#article-3a5ee874-5f2d-11ef-aa7d-b1f69d1a0f53", // Аккуратно, при удалении другой id
      cartPaymentMethodsContainerCss: ".cart-fragment__paymentMethods__container",
-     totalPriceForItemsCss: "[data-id=\"subtotal\"] span[component=\"dd\"]", // Надо регекс чтобы zl убрать, не забудь сделать
-     priceForOneItemCss: ".z-coast-base__article-price", // Здесь итератор надо чтобы сумму всех вещей взять
+     totalPriceForItemsCss: "[data-id=\"subtotal\"] span[component=\"dd\"]", // Надо регекс чтобы zl убрать, не забудь сделать +
+     priceForOneItemCss: ".z-coast-base__article-price", // Здесь итератор надо чтобы сумму всех вещей взять +
 
     }
     Buttons = {
         deleteItemFromCartCss: "[data-id=\"article-remove\"]",
-        proceedToPayBtnCss: "[data-id=\"proceed-to-checkout-button\"]"
+        proceedToPayBtnCss: "[data-id=\"proceed-to-checkout-button\"]",
+        undoDeleteActionBtnCss: ".z-coast-base__undo-action a"
     }
     Links = {
         myNikeShoesInCartCss: ".z-coast-base__article__details [href*=\"nike-sportswear\"]",
+    }
+
+    async undoRemoveMyNikeShoesFromcart() {
+        await this.waitForSelector(this.Buttons.undoDeleteActionBtnCss).then(() => this.click(this.Buttons.undoDeleteActionBtnCss));
+    }
+    async removeMyNikesFromCart(){
+        await this.click(this.Labels.cartItemContainerDunkLowBPCss + this.Buttons.deleteItemFromCartCss);
     }
 
     async isPaymentMethodsContainerVisible(){
