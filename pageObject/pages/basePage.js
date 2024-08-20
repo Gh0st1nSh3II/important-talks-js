@@ -14,6 +14,19 @@ class BasePage {
         return await this.page.title();
     }
 
+    async getCurrentUrl() {
+        return await this.page.url();
+    }
+    // async checkPageTitle(expectedTitle) {
+    //     await expect(this.page).toHaveTitle(expectedTitle);
+    // }
+    // async checkPageUrl(expectedUrl) {
+    //     await expect(this.page).toHaveURL(expectedUrl);
+    // }
+
+    async uploadFile(inputSelector, filePath) {
+        await this.page.setInputFiles(inputSelector, filePath);
+    }
     async waitForSelector(selector) {
         await this.page.waitForSelector(selector);
     }
@@ -25,11 +38,32 @@ class BasePage {
     async type(selector, text) {
         await this.page.fill(selector, text);
     }
-
+    async isElementPresent(selector) {
+        return await this.page.locator(selector).count() > 0;
+    }
     async isVisible(selector) {
         await expect(this.page.locator(selector)).toBeVisible();
     }
 
+    // async isElementVisible(selector) {
+    //     return await this.page.locator(selector).isVisible();
+    // }
+
+    async isElementNotVisible(selector) {
+        return !(await this.page.locator(selector).isVisible());
+    }
+    async verifyElementText(selector, expectedText) {
+        const text = await this.page.locator(selector).innerText();
+        if (!text.includes(expectedText)) {
+            throw new Error(`Expected text "${expectedText}" not found in element "${selector}".`);
+        }
+    }
+    async checkUrlContains(expectedText) {
+        const url = await this.page.url();
+        if (!url.includes(expectedText.ignoreCase)) {
+            throw new Error(`Expected URL to contain "${expectedText}", but got "${url}"`);
+        }
+    }
 }
 
 module.exports = BasePage;

@@ -25,7 +25,11 @@ class ZalandoMain extends BasePage{
     Labels = {
         errorIncorrectPasswordEventCss: "[data-validation=\"error\"]",
         userDataCompoonentCss: "[data-trckng-component=\"PrVPUP8p3hz_u1AnWw6Ap\"]",
-        genderSelectorCss: "[aria-label=\"Start\"]"
+        genderSelectorCss: "[aria-label=\"Start\"]",
+        facebookLinkLabelCss: "[aria-label=\"Facebook\"]",
+        instagramLinkLabelCss: "[aria-label=\"Instagram\"]",
+        twitterLinkLabelCss: "[aria-label=\"Twitter\"]",
+        pinterestLinkLabelCss: "[aria-label=\"Pinterest\"]"
     }
 
     Images = {
@@ -61,6 +65,13 @@ class ZalandoMain extends BasePage{
         await this.isVisible(this.Labels.genderSelectorCss);
     }
 
+    async clickSocialLink(text) {
+        const selector = `[aria-label="${text}"]`;
+        await this.page.click(selector);
+    }
+    async isThatWiredPage(){
+        await this.checkUrlContains("/zalando/");
+    }
 }
 
 module.exports = ZalandoMain;
