@@ -1,10 +1,10 @@
-const BasePage = require('../basePage');
+const BasePage = require('../BasePage');
 const {readFileSync} = require("node:fs");
 const {expect} = require("@playwright/test");
 
 const zalando = JSON.parse(readFileSync(`./pageObject/testData/zalandodata.json`, `utf-8`));
 
-class ZalandoMain extends BasePage{
+class ZalandoHomePage extends BasePage{
     constructor(page) {
         super(page);
     }
@@ -82,4 +82,4 @@ class ZalandoMain extends BasePage{
     }
 }
 
-module.exports = ZalandoMain;
+module.exports = ZalandoHomePage;

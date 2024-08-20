@@ -1,4 +1,5 @@
-const ZalandoMain = require("../pages/zalando/zalandoMain");
+const ZalandoMain = require("../pages/zalando/ZalandoHomePage");
+const ZalandoMyAccountPage = require("../pages/zalando/ZalandoMyAccountPage");
 
 class PageManager {
     constructor(page) {
@@ -7,6 +8,9 @@ class PageManager {
 
     getZalandoMainPage(){
         return new ZalandoMain(this.page);
+    }
+    getZalandoMyAccountPage(){
+        return new ZalandoMyAccountPage(this.page);
     }
 
 }
