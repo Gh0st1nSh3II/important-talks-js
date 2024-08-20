@@ -19,6 +19,15 @@ class BaseTest {
         });
     }
 
+    static beforeEachViaLogin() {
+        test.beforeEach(async ({ page }) => {
+            console.log('BeforeEach start');
+            BaseTest.pageManager = new PageManager(page);
+            await BaseTest.pageManager.getZalandoMainPage().navigate(zalandoBaseTestData.mainPageLink);
+            await BaseTest.pageManager.getZalandoMainPage().logAsUserInZalando(zalandoBaseTestData.user.password);
+        });
+    }
+
     static afterEachTests() {
         test.afterEach(async () => {
             console.log('AfterEach start');

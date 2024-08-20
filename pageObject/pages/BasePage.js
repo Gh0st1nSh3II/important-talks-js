@@ -10,6 +10,10 @@ class BasePage {
         await this.page.goto(url);
     }
 
+    async getNumberFromElement(selector) {
+        return parseFloat(await this.page.textContent(selector));
+    }
+
     async getTitle() {
         return await this.page.title();
     }

@@ -7,8 +7,17 @@ class ZalandoBucketPage extends BasePage{
     }
 
     Labels = {
-     cartContainer: "[data-id=\"cart-fragment-container\"]"
+     cartContainer: "[data-id=\"cart-fragment-container\"]",
+     cartItemCounter: "[data-testid=\"shopping-bag-badge\"] span"
     }
+
+
+
+
+    async getItemAmount(){
+        await this.getNumberFromElement(this.Labels.cartItemCounter);
+    }
+
 
 
 }
