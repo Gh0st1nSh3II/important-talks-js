@@ -36,9 +36,13 @@ class ZalandoHomePage extends BasePage{
     }
 
     Links = {
-        aboutCompanyLinkCss: "[href=\"/zalando-dane-firmy/\"]"
+        aboutCompanyLinkCss: "[href=\"/zalando-dane-firmy/\"]",
+        redirectToUnderwearClothes: "[href=\"/bielizna-dziecieca/\"]"
     }
 
+    async clickUnderwearClothesLink() {
+        await this.click(this.Links.redirectToUnderwearClothes);
+    }
     async clickCartButton(){
         await this.click(this.Buttons.myAccountButtonCss);
     }

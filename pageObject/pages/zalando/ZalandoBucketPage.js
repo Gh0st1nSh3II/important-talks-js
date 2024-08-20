@@ -11,13 +11,16 @@ class ZalandoBucketPage extends BasePage{
      cartItemCounterCss: "[data-testid=\"shopping-bag-badge\"] span",
      cartItemContainerDunkLowBPCss: "#article-e1e6aa61-5f1f-11ef-aacd-e751ed0fad07",
      cartPaymentMethodsContainerCss: ".cart-fragment__paymentMethods__container",
+     totalPriceForItemsCss: "[data-id=\"subtotal\"] span[component=\"dd\"]", // Надо регекс чтобы zl убрать, не забудь сделать
+     priceForOneItemCss: ".z-coast-base__article-price", // Здесь итератор надо чтобы сумму всех вещей взять
+
     }
     Buttons = {
         deleteItemFromCartCss: "[data-id=\"article-remove\"]",
         proceedToPayBtnCss: "[data-id=\"proceed-to-checkout-button\"]"
     }
     Links = {
-        myNikeShoesInCartCss: ".z-coast-base__article__details [href*=\"nike-sportswear\"]"
+        myNikeShoesInCartCss: ".z-coast-base__article__details [href*=\"nike-sportswear\"]",
     }
 
     async isPaymentMethodsContainerVisible(){
@@ -27,8 +30,16 @@ class ZalandoBucketPage extends BasePage{
         await this.isElementPresent(this.Links.myNikeShoesInCartCss);
     }
 
-    async getItemAmount(){
-        await this.getNumberFromElement(this.Labels.cartItemCounterCss);
+    async getItemAmountFromWidget(){
+        await this.getNumberFromElement(this.Labels.cartItemCounterCss.textContent().replaceAll(/[a-z]/gi, ''));
+    }
+    async getEachPriceOfItem(){
+        let finishValue;
+        const elements = await this.getNumberFromElement(this.Labels.priceForOneItemCss.textContent.replaceAll(/[a-z]/gi, ''));
+        for (const element of elements) {
+            finishValue += element;
+        }
+        return finishValue;
     }
 
 
