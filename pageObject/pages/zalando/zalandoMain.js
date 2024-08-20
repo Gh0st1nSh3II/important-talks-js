@@ -19,11 +19,17 @@ class ZalandoMain extends BasePage{
     Input = {
         emailInputFieldCss: "#lookup-email",
         passwordInputFieldCss: "#login-password",
+        searchBarInputCss: "#search-input-container input"
     }
 
     Labels = {
         errorIncorrectPasswordEventCss: "[data-validation=\"error\"]",
-        userDataCompoonentCss: "[data-trckng-component=\"PrVPUP8p3hz_u1AnWw6Ap\"]"
+        userDataCompoonentCss: "[data-trckng-component=\"PrVPUP8p3hz_u1AnWw6Ap\"]",
+        genderSelectorCss: "[aria-label=\"Start\"]"
+    }
+
+    Images = {
+        logoMainCss: "#header-logo span"
     }
 
 
@@ -43,6 +49,16 @@ class ZalandoMain extends BasePage{
     }
     async isErrorAfterEnteringIncorrectPasswordVisible() {
          await this.isVisible(this.Labels.errorIncorrectPasswordEventCss);
+    }
+
+    async isMainLogoVisisbleAtHomePage(){
+        await this.isVisible(this.Images.logoMainCss);
+    }
+    async isSearchBarVisibleAtHomePage(){
+        await this.isVisible(this.Input.searchBarInputCss);
+    }
+    async isGenderSelectorVisible(){
+        await this.isVisible(this.Labels.genderSelectorCss);
     }
 
 }

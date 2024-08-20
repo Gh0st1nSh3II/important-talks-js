@@ -13,7 +13,7 @@ class BaseTest {
 
     static beforeEachTests() {
         test.beforeEach(async ({ page }) => {
-            console.log('Запуск beforeEach');
+            console.log('BeforeEach start');
             BaseTest.pageManager = new PageManager(page);
             await BaseTest.pageManager.getZalandoMainPage().navigate(zalandoBaseTestData.mainPageLink);
         });
@@ -21,7 +21,7 @@ class BaseTest {
 
     static afterEachTests() {
         test.afterEach(async () => {
-            console.log('Запуск afterEach');
+            console.log('AfterEach start');
 
         });
     }

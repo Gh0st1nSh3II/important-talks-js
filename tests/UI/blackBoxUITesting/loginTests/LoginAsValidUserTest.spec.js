@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-const BaseTest = require('../../baseTest');
+const BaseTest = require('../../../baseTest');
 const {readFileSync} = require("node:fs");
 let zalando = JSON.parse(readFileSync(`./pageObject/testData/zalandodata.json`, `utf-8`));
 
