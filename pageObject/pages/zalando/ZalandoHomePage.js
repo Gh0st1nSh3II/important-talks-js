@@ -13,7 +13,8 @@ class ZalandoHomePage extends BasePage{
     myAccountButtonCss: "#header-user-account-icon button",
     proceedMailBtnCss: "[data-testid=\"verify-email-button\"]",
     authorizeCompleteBtnCss: "[data-testid=\"login-button\"]",
-    mySizesBtnXpath: "//*[@href=\"/your-sizes/\"]/parent::span"
+    mySizesBtnXpath: "//*[@href=\"/your-sizes/\"]/parent::span",
+    cartButtonCss: "[data-testid=\"cart\"]"
     }
 
     Input = {
@@ -38,6 +39,9 @@ class ZalandoHomePage extends BasePage{
         aboutCompanyLinkCss: "[href=\"/zalando-dane-firmy/\"]"
     }
 
+    async clickCartButton(){
+        await this.click(this.Buttons.myAccountButtonCss);
+    }
 
     async logAsUserInZalando(userPassword){
         await this.click(this.Buttons.myAccountButtonCss);

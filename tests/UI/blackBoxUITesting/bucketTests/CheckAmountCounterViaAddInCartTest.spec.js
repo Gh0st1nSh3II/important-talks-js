@@ -3,7 +3,9 @@ const BaseTest = require("../../../baseTest");
 
 BaseTest.beforeEachViaLogin();
 
-test('Login in Zalando as invalid user with incorrect password', async ({ page }) => {
+
+test('Checking if the cart opened and shows correctly', async ({ page }) => {
     const pageManager = BaseTest.pageManager;
+
 
 });
