@@ -4,7 +4,7 @@ const BaseTest = require("../../../baseTest");
 BaseTest.beforeEachViaLogin();
 
 
-test('Checking if the orders options work correctly with invalid data', async ({ page }) => {
+test('Checking if the order btn redirect to order options', async ({ page }) => {
     const pageManager = BaseTest.pageManager;
 
     await pageManager.getZalandoMainPage().clickCartButton();
