@@ -5,7 +5,7 @@ test('Mobile view', async ({ page }) => {
 
     await page.goto('https://www.zalando.pl/');
 
-    await expect(page.url()).toContain("zolando");
+    await expect(page.url()).toContain("zalando");
 });
 
 test('Tabletka view', async ({ page }) => {
@@ -13,7 +13,7 @@ test('Tabletka view', async ({ page }) => {
 
     await page.goto('https://www.zalando.pl/');
 
-    await expect(page.url()).toContain("zolando");
+    await expect(page.url()).toContain("zalando");
 
 });
 
@@ -22,5 +22,5 @@ test('Desktop view', async ({ page }) => {
 
     await page.goto('https://www.zalando.pl/');
 
-    await expect(page.url()).toContain("zolando");
+    await expect(page.url()).toContain("zalando");
 });
