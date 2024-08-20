@@ -3,7 +3,7 @@ const BaseTest = require("../../../baseTest");
 
 BaseTest.beforeEachViaLogin();
 
-test('Checking if the cart opened and shows correctly', async ({ page }) => {
+test('Checking if the item count work correctly while adding', async ({ page }) => {
     const pageManager = BaseTest.pageManager;
 
     await pageManager.getZalandoMainPage().clickUnderwearClothesLink();

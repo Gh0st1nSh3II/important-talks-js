@@ -4,7 +4,7 @@ const pagemanager = require("../../../../pageObject/manager/pageManager");
 
 BaseTest.beforeEachViaLogin();
 
-test('Checking if the cart opened and shows correctly', async ({ page }) => {
+test('Checking if the item amount work correctly while deleting', async ({ page }) => {
     const pageManager = BaseTest.pageManager;
 
     await pageManager.getZalandoMainPage().clickCartButton();
