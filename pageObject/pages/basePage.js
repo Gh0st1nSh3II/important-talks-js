@@ -1,3 +1,5 @@
+const {expect} = require("@playwright/test");
+
 class BasePage {
 
     constructor(page) {
@@ -23,6 +25,11 @@ class BasePage {
     async type(selector, text) {
         await this.page.fill(selector, text);
     }
+
+    async isVisible(selector) {
+        await expect(this.page.locator(selector)).toBeVisible();
+    }
+
 }
 
 module.exports = BasePage;

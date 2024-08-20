@@ -21,19 +21,28 @@ class ZalandoMain extends BasePage{
         passwordInputFieldCss: "#login-password",
     }
 
+    Labels = {
+        errorIncorrectPasswordEventCss: "[data-validation=\"error\"]",
+        userDataCompoonentCss: "[data-trckng-component=\"PrVPUP8p3hz_u1AnWw6Ap\"]"
+    }
 
-    async logAsUserInZalando(){
+
+    async logAsUserInZalando(userPassword){
         await this.click(this.Buttons.myAccountButtonCss);
+        await this.click(this.Input.emailInputFieldCss);
         await this.type(this.Input.emailInputFieldCss, zalando.user.email);
         await this.click(this.Buttons.proceedMailBtnCss);
-        await this.type(this.Input.passwordInputFieldCss, zalando.user.password);
+        await this.click(this.Input.passwordInputFieldCss);
+        await this.type(this.Input.passwordInputFieldCss, userPassword);
         await this.click(this.Buttons.authorizeCompleteBtnCss);
     }
 
-    async isUserInZalando() {
-        await this.hover(this.Buttons.myAccountButtonCss).then();
-        return this.page.isVisible(this.Buttons.mySizesBtnXpath);
-
+    async isValidUserLoggedIn(){
+        await this.click(this.Buttons.myAccountButtonCss);
+        await this.isVisible(this.Labels.userDataCompoonentCss);
+    }
+    async isErrorAfterEnteringIncorrectPasswordVisible() {
+         await this.isVisible(this.Labels.errorIncorrectPasswordEventCss);
     }
 
 }

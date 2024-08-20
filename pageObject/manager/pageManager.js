@@ -5,7 +5,6 @@ class PageManager {
         this.page = page;
     }
 
-
     getZalandoMainPage(){
         return new ZalandoMain(this.page);
     }
