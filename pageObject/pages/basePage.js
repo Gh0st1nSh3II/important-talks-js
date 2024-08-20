@@ -17,6 +17,7 @@ class BasePage {
     async getCurrentUrl() {
         return await this.page.url();
     }
+
     // async checkPageTitle(expectedTitle) {
     //     await expect(this.page).toHaveTitle(expectedTitle);
     // }
@@ -63,6 +64,10 @@ class BasePage {
         if (!url.includes(expectedText.ignoreCase)) {
             throw new Error(`Expected URL to contain "${expectedText}", but got "${url}"`);
         }
+    }
+    async checkPageDisplay() {
+        const title = await this.page.title();
+        expect(title).toContain('Zalando'); // Замените на нужный заголовок
     }
 }
 
