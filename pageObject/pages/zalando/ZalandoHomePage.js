@@ -14,7 +14,9 @@ class ZalandoHomePage extends BasePage{
     proceedMailBtnCss: "[data-testid=\"verify-email-button\"]",
     authorizeCompleteBtnCss: "[data-testid=\"login-button\"]",
     mySizesBtnXpath: "//*[@href=\"/your-sizes/\"]/parent::span",
-    cartButtonCss: "[data-testid=\"cart\"]"
+    cartButtonCss: "[data-testid=\"cart\"]",
+    languageSwitcherBtnCss: "[data-testid=\"language-switcher\"]",
+    languageSwitcherSaveButtonCss: "[data-testid=\"language-switcher-save-button\"]"
     }
 
     Input = {
@@ -32,14 +34,36 @@ class ZalandoHomePage extends BasePage{
     }
 
     Images = {
-        logoMainCss: "#header-logo span"
+        logoMainCss: "#header-logo span",
+        errorMsgWithXSSInjAtErrorPage: ".AGx8tI"
     }
 
     Links = {
         aboutCompanyLinkCss: "[href=\"/zalando-dane-firmy/\"]",
-        redirectToUnderwearClothes: "[href=\"/bielizna-dziecieca/\"]"
+        redirectToUnderwearClothes: "[href=\"/bielizna-dziecieca/\"]",
+        reloadButtonAtReloadPage: "[id=\"reload-button\"]"
     }
 
+    Radiobuttons = {
+        englishMode: "label[for=\"en-m\"]",
+        polishMode: "label[for=\"pl-m\"]"
+    }
+
+    async switchToEnglish(){
+        await this.click(this.Buttons.languageSwitcherBtnCss);
+        await this.click(this.Radiobuttons.englishMode);
+        await this.click(this.Buttons.languageSwitcherSaveButtonCss);
+    }
+    async openLanguageSwitcherMenuAndCheckIsEnglishModeEnable(){
+        await this.click(this.Buttons.languageSwitcherBtnCss);
+        expect(await this.Buttons.languageSwitcherSaveButtonCss.textContent).toEqual("Save")
+    }
+    async isErrorAtInjectionPageVisible(){
+        await this.isVisible(this.Images.logoMainCss);
+    }
+    async enterSomeDataToSerachBar(){
+        await this.type(this.Input.emailInputFieldCss, "<script>console.log()</script>");
+    }
     async clickUnderwearClothesLink() {
         await this.click(this.Links.redirectToUnderwearClothes);
     }
@@ -49,9 +73,11 @@ class ZalandoHomePage extends BasePage{
 
     async logAsUserInZalando(userPassword){
         await this.click(this.Buttons.myAccountButtonCss);
+        // await this.waitForSelector(this.Input.emailInputFieldCss);
         await this.click(this.Input.emailInputFieldCss);
         await this.type(this.Input.emailInputFieldCss, zalando.user.email);
         await this.click(this.Buttons.proceedMailBtnCss);
+        // await this.waitForSelector(this.Input.passwordInputFieldCss);
         await this.click(this.Input.passwordInputFieldCss);
         await this.type(this.Input.passwordInputFieldCss, userPassword);
         await this.click(this.Buttons.authorizeCompleteBtnCss);

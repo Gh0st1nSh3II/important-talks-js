@@ -16,7 +16,7 @@ test('Checking is the choosing delivery type work correctly ADDRESS', async ({ p
     await pageManager.getZalandoBucketPage().clickAddressDeliveryOptionAndCheck()
 });
 
-test('Checking is the choosing delivery type work correctly ADDRESS', async ({ page }) => {
+test('Checking is the choosing delivery type work correctly POSTOMAT', async ({ page }) => {
     const pageManager = BaseTest.pageManager;
 
     await pageManager.getZalandoMainPage().clickCartButton();
