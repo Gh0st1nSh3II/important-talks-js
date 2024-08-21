@@ -14,7 +14,7 @@ async function apiMethodsCorrectWorkTest(url) {
         const putResponse = await axios.put(`${url}/1`, { name: 'Updated Product' });
         console.log('PUT Response:', putResponse.data);
 
-        // Test DELETE request
+        // Test DELETE request 401
         const deleteResponse = await axios.delete(`${url}/1`);
         console.log('DELETE Response:', deleteResponse.data);
     } catch (error) {
