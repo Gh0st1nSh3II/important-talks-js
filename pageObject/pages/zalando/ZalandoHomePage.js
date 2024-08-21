@@ -49,6 +49,10 @@ class ZalandoHomePage extends BasePage{
         polishMode: "label[for=\"pl-m\"]"
     }
 
+
+    async isSomeShoesNamesIncludeMyAsk(req){
+        await this.isElementPresent(req)
+    }
     async switchToEnglish(){
         await this.click(this.Buttons.languageSwitcherBtnCss);
         await this.click(this.Radiobuttons.englishMode);
