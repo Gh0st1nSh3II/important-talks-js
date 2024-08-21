@@ -10,6 +10,6 @@ test('Checking if the cart opened and shows correctly', async ({ page }) => {
     await pageManager.getZalandoMainPage().clickCartButton();
 
     await pageManager.getZalandoBucketPage().isPaymentMethodsContainerVisible();
-    // I added the shoes originally to speed up the creation of validation tests
+
     await pageManager.getZalandoBucketPage().isNikeShoesPresent();
 });
