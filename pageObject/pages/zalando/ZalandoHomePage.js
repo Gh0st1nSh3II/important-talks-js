@@ -61,8 +61,8 @@ class ZalandoHomePage extends BasePage{
     async isErrorAtInjectionPageVisible(){
         await this.isVisible(this.Images.logoMainCss);
     }
-    async enterSomeDataToSerachBar(){
-        await this.type(this.Input.emailInputFieldCss, "<script>console.log()</script>");
+    async enterSomeDataToSerachBar(text){
+        await this.type(this.Input.searchBarInputCss, text);
     }
     async clickUnderwearClothesLink() {
         await this.click(this.Links.redirectToUnderwearClothes);
