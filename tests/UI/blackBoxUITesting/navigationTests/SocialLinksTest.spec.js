@@ -3,7 +3,7 @@ const BaseTest = require("../../../baseTest");
 
 BaseTest.beforeEachTests();
 
-test("Check is home page load correctly", async () => {
+test("Check is social link work correctly Facebook", async () => {
     const pageManager = BaseTest.pageManager;
 
     await pageManager.getZalandoMainPage().clickSocialLink("Facebook");
@@ -11,7 +11,7 @@ test("Check is home page load correctly", async () => {
     await pageManager.getZalandoMainPage().isThatWiredPage();
 });
 
-test("Check is home page 2load correctly", async () => {
+test("Check is social link work correctly Instagram", async () => {
     const pageManager = BaseTest.pageManager;
 
     await pageManager.getZalandoMainPage().clickSocialLink("Instagram");
@@ -19,7 +19,7 @@ test("Check is home page 2load correctly", async () => {
     await pageManager.getZalandoMainPage().isThatWiredPage();
 });
 
-test("Check is home page 3load correctly", async () => {
+test("Check is social link work correctly Twitter", async () => {
     const pageManager = BaseTest.pageManager;
 
     await pageManager.getZalandoMainPage().clickSocialLink("Twitter");
@@ -27,7 +27,7 @@ test("Check is home page 3load correctly", async () => {
     await pageManager.getZalandoMainPage().isThatWiredPage();
 });
 
-test("Check is home page l4oad correctly", async () => {
+test("Check is social link work correctly Pinterest", async () => {
     const pageManager = BaseTest.pageManager;
 
     await pageManager.getZalandoMainPage().clickSocialLink("Pinterest");

@@ -13,22 +13,56 @@ class ZalandoBucketPage extends BasePage{
      cartPaymentMethodsContainerCss: ".cart-fragment__paymentMethods__container",
      totalPriceForItemsCss: "[data-id=\"subtotal\"] span[component=\"dd\"]", // Надо регекс чтобы zl убрать, не забудь сделать +
      priceForOneItemCss: ".z-coast-base__article-price", // Здесь итератор надо чтобы сумму всех вещей взять +
-
+     addressInfoHeaderCss: ".z-coast-fjord_address_shippingAddressBook-header"
     }
     Buttons = {
         deleteItemFromCartCss: "[data-id=\"article-remove\"]",
         proceedToPayBtnCss: "[data-id=\"proceed-to-checkout-button\"]",
         undoDeleteActionBtnCss: ".z-coast-base__undo-action a",
-        proceedPostData: "[data-id=\"button-save-address-book\"]"
+        proceedPostData: "[data-id=\"button-save-address-book\"]",
+        changeAreaButtonCss: ".button_touch-area",
+        showPostomatAddressesButtonCss: ".vfoVrE",
+        proceedBydgoscStrassePostomatButton: "[data-id=\"z-coast-fjord_selectPickupPoint-53.0132-18.56153\"]"
     }
     Links = {
         myNikeShoesInCartCss: ".z-coast-base__article__details [href*=\"nike-sportswear\"]",
     }
 
     Icons = {
-        errorIcon: ".z-1-icon_svg"
+        errorIcon: ".z-1-icon_svg",
+        addressTypeButtonIcon: "#delivery-destination-tab-0",
+        postomatTypeButtonIon: "#delivery-destination-tab-0"
     }
 
+    Inputs = {
+        streetAddressContainerCss: "#street-address",
+        postCityCodeCss: " z-grid-item:nth-child(4) > div:nth-child(1) > label:nth-child(1) > div:nth-child(2) > input",
+        cityNameCss: "z-grid-item:nth-child(6) > div:nth-child(1) > label:nth-child(1) > div:nth-child(2) > input"
+    }
+
+    async isBydgoskaStrasseOptionButtonVisible(){
+        await this.isVisible(this.Buttons.proceedBydgoscStrassePostomatButton)
+    }
+    async clickPostomatDeliveryOptionAndCheck(){
+        await this.click(this.Buttons.addressTypeButtonIcon);
+        await this.isVisible(this.Inputs.postCityCodeCss);
+    }
+
+    async clickAddressDeliveryOptionAndCheck(){
+        await this.click(this.Buttons.addressTypeButtonIcon);
+        await this.isVisible(this.Inputs.streetAddressContainerCss);
+    }
+    async enterSimpleInfoForPostomat(){
+        await this.type(this.Inputs.postCityCodeCss, "87-100");
+        await this.type(this.Inputs.cityNameCss, "Torun");
+        await this.click(this.Buttons.showPostomatAddressesButtonCss)
+    }
+    async clickChangeDeliveryTypeButton(){
+        await this.click(this.Buttons.changeAreaButtonCss)
+    }
+    async isAddressHeaderVisibleAtOrderConfigForm(){
+        await this.isVisible(this.Labels.addressInfoHeaderCss)
+    }
     async isErrorIconViaEditPostDataVisible(){
         await this.isElementPresent(this.Icons.errorIcon)
     }
