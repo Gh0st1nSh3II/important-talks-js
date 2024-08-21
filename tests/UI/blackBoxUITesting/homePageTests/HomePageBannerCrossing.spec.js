@@ -3,9 +3,9 @@ const BaseTest = require("../../../baseTest");
 
 BaseTest.beforeEachTests();
 
-test("Check is home page load correctly", async () => {
+test("Check is home page banners work correctly", async () => {
     const pageManager = BaseTest.pageManager;
 
-
+    await pageManager.getZalandoMainPage().clickAboutUsBanner();
 
 });

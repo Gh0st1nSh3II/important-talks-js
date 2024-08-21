@@ -16,7 +16,8 @@ class ZalandoHomePage extends BasePage{
     mySizesBtnXpath: "//*[@href=\"/your-sizes/\"]/parent::span",
     cartButtonCss: "[data-testid=\"cart\"]",
     languageSwitcherBtnCss: "[data-testid=\"language-switcher\"]",
-    languageSwitcherSaveButtonCss: "[data-testid=\"language-switcher-save-button\"]"
+    languageSwitcherSaveButtonCss: "[data-testid=\"language-switcher-save-button\"]",
+    needMoreHelpButton: "[aria-label=\"Need more help?\"]"
     }
 
     Input = {
@@ -49,7 +50,14 @@ class ZalandoHomePage extends BasePage{
         polishMode: "label[for=\"pl-m\"]"
     }
 
+    Banners = {
+        aboutUsBanner: "[name=\"“headbanner.about.us\"]"
+    }
 
+    async clickAboutUsBanner(){
+        await this.click(this.Banners.aboutUsBanner);
+        await this.isVisible(this.Buttons.needMoreHelpButton)
+    }
     async isSomeShoesNamesIncludeMyAsk(req){
         await this.isElementPresent(req)
     }
