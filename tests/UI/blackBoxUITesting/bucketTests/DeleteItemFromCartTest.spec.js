@@ -1,6 +1,6 @@
 const {test, expect} = require("@playwright/test");
 const BaseTest = require("../../../baseTest");
-const pagemanager = require("../../../../pageObject/manager/pageManager");
+const pageManager = require("../../../../pageObject/manager/pageManager");
 
 BaseTest.beforeEachViaLogin();
 
